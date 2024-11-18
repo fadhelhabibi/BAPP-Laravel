@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Varcost;
 use App\Models\User;
+use App\Models\Somsa;
+use App\Models\Pw;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,6 +15,8 @@ class DashboardController extends Controller
         // Hitung total jumlah baris (record) di tabel varcost
         $totalVarcost = Varcost::count();
         $totalUser = User::count();
+        $totalSomsa = Somsa::count();
+        $totalPw = Pw::count();
 
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -27,6 +31,8 @@ class DashboardController extends Controller
         return view('dashboard', [
             'totalVarcost' => $totalVarcost,
             'totalUser' => $totalUser,
+            'totalSomsa' => $totalSomsa,
+            'totalPw' => $totalPw,
             'months' => $months,
             'userCounts' => $userCounts,
             'varcostCounts' => $varcostCounts
