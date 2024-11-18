@@ -30,6 +30,7 @@
                                 <input required type="text" class="form-control" id="email" name="email" value="{{ isset($user) ? $user->email : '' }}" placeholder="Masukkan Email">
                             </div>
                         </div>
+                        @if (auth()->user()->level == 'Triple-E' || auth()->user()->level == 'KUT' || auth()->user()->level == 'RTS')
                         <div class="form-group row">
                             <div class="col-6">
                                 <label for="level">Level</label>
@@ -45,6 +46,7 @@
                                 <input type="text" class="form-control" id="nohp" name="nohp" value="{{ isset($user) ? $user->nohp : '' }}" placeholder="Masukkan Nomor Handphone">
                             </div>
                         </div>
+                        @endif
                         <div class="form-group row">
                         <div class="col-6">
                             <label for="fotoprofil">Upload Gambar</label>

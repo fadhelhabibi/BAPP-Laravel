@@ -39,14 +39,16 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('son') }}">
+        <a class="nav-link" href="{{ route('pw') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>PW</span></a>
     </li>
 
-    <div class="sidebar-heading">
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading mb-3">
         Expense
     </div>
+    <hr class="sidebar-divider">
 
     <li class="nav-item">
         <a class="nav-link" href="#">

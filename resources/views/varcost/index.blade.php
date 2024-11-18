@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Data Varcost')
+@section('title', 'Data Varcost')
 
 @section('content')
 <form method="GET" action="{{ route('varcost') }}">
@@ -14,7 +14,9 @@
             </select>
         </div>
         <div class="col-2">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-search fa-sm text-white-50"></i> Search</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search fa-sm text-white-50"></i> Search
+            </button>
         </div>
     </div>
 </form>
@@ -25,10 +27,7 @@
             <div class="col-6">
                 <h6 class="m-0 font-weight-bold text-primary">Data Varcost</h6>
             </div>
-            <div class="col-6 d-flex justify-content-end"> <!-- Tambahkan d-flex -->
-                {{-- <a href="{{ route('varcost.export.excel') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                    <i class="fas fa-download fa-sm text-white-50"></i> Export Excel
-                </a>&nbsp; --}}
+            <div class="col-6 d-flex justify-content-end">
                 <a href="{{ route('varcost.export.pdf', ['periode' => request('search')]) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                     <i class="fas fa-download fa-sm text-white-50"></i> Export PDF
                 </a>
@@ -37,7 +36,7 @@
     </div>
     <div class="card-body">
         @if (auth()->user()->level == 'Triple-E' || auth()->user()->level == 'KUT')
-           <a href="{{ route('varcost.tambah') }}" class="btn btn-primary mb-3">Tambah Varcost</a>
+            <a href="{{ route('varcost.tambah') }}" class="btn btn-primary mb-3" style="font-size: 14px;"><i class="fas fa-plus"></i> Tambah Data</a>
         @endif
         <div class="table-responsive">
             <table class="table" id="dataTable" cellspacing="0" style="font-size: 12px">
@@ -48,21 +47,21 @@
                         <th>Periode</th>
                         <th>Tahun</th>
                         <th>Site ID</th>
-                        <th>Site Name</th>
+                        <th style="min-width: 100px;">Site Name</th>
                         <th>NOP</th>
                         <th>CLUSTER</th>
                         <th>Tiket SWFM</th>
-                        <th>Tanggal Pelaksanaan</th>
+                        <th style="min-width: 150px;">Tanggal Pelaksanaan</th>
                         <th>Aktivity</th>
                         <th>Kode SL</th>
                         <th>Qty</th>
-                        <th>Harga Satuan</th>
+                        <th style="min-width: 120px;">Harga Satuan</th>
                         <th>Fee</th>
-                        <th>Total Harga</th>
-                        <th>Status Ticket</th>
+                        <th style="min-width: 100px;">Total Harga</th>
+                        <th style="min-width: 100px;">Status Ticket</th>
                         <th>PO</th>
-                        <th>Status Pekerjaan</th>
-                        <th>Status Penagihan</th>
+                        <th style="min-width: 150px;">Status Pekerjaan</th>
+                        <th style="min-width: 150px;">Status Penagihan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -75,45 +74,38 @@
                             <td>{{ $row->periode }}</td>
                             <td>{{ $row->tahun }}</td>
                             <td>{{ $row->siteid }}</td>
-                            <td>{{ $row->sitename }}</td>
+                            <td class="text-center" style="min-width: 100px;">{{ $row->sitename }}</td>
                             <td>{{ $row->nop }}</td>
                             <td>{{ $row->cluster }}</td>
                             <td>{{ $row->tiketfiola }}</td>
-                            <td>{{ $row->tanggalpelaksanaan }}</td>
+                            <td class="text-center" style="min-width: 150px;">{{ $row->tanggalpelaksanaan }}</td>
                             <td>{{ $row->aktivity }}</td>
                             <td>{{ $row->kodesl }}</td>
                             <td>{{ $row->qty }}</td>
-                            <td>Rp.{{ number_format($row->hargasatuan, 0, ',', '.') }}</td>
+                            <td class="text-center" style="min-width: 120px;">Rp.{{ number_format($row->hargasatuan, 0, ',', '.') }}</td>
                             <td>{{ $row->fee }}%</td>
-                            <td>Rp.{{ number_format($row->total_harga, 0, ',', '.') }}</td>
-                            <td>{{ $row->statusticket }}</td>
+                            <td class="text-center" style="min-width: 100px;">Rp.{{ number_format($row->total_harga, 0, ',', '.') }}</td>
+                            <td class="text-center" style="min-width: 100px;">{{ $row->statusticket }}</td>
                             <td>{{ $row->po }}</td>
-                            <td>{{ $row->statuspekerjaan }}</td>
-                            <td>{{ $row->statuspenagihan }}</td>
+                            <td class="text-center" style="min-width: 150px;">{{ $row->statuspekerjaan }}</td>
+                            <td class="text-center" style="min-width: 150px;">{{ $row->statuspenagihan }}</td>
                             <td class="justify-content-center">
-                                {{-- <a href="{{ route('varcost.edit', $row->id) }}" class="btn btn-warning" style="font-size: 12px">Edit</a><br><br>
-                                <a href="{{ route('varcost.hapus', $row->id) }}" class="btn btn-danger" style="font-size: 12px">Hapus</a> --}}
                                 <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                         @if (auth()->user()->level == 'Triple-E' || auth()->user()->level == 'RTS')
-                                        <a class="dropdown-item" href="{{ route('varcost.edit', $row->id) }}">Edit</a>
+                                            <a class="dropdown-item" href="{{ route('varcost.edit', $row->id) }}">Edit</a>
                                         @endif
-                                        <a class="dropdown-item" href="#" 
-                                        onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('hapus-form-{{ $row->id }}').submit(); }">Hapus</a>
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('hapus-form-{{ $row->id }}').submit(); }">Hapus</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Detail</a>
                                     </div>
                                 </div>
-
-                                <!-- Form untuk hapus data -->
                                 <form id="hapus-form-{{ $row->id }}" action="{{ route('varcost.hapus', $row->id) }}" method="POST" style="display: none;">
                                     @csrf
-                                    @method('DELETE') <!-- Menandakan bahwa ini adalah permintaan DELETE -->
+                                    @method('DELETE')
                                 </form>
                             </td>
                         </tr>
@@ -124,18 +116,18 @@
     </div>
 </div>
 @endsection
+
 @section('script')
-    <script>
+<script>
     $(document).ready(function() {
         $("#tanggalpelaksanaan").datepicker({
-            dateFormat: 'dd-mm-yy', // Format tanggal yang ditampilkan
+            dateFormat: 'dd-mm-yy',
             onSelect: function(dateText) {
-                // Saat tanggal dipilih, konversi ke format YYYY-MM-DD sebelum disimpan
                 var parts = dateText.split('-');
-                var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0]; // Ubah ke format YYYY-MM-DD
-                $(this).val(formattedDate); // Set nilai input
+                var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
+                $(this).val(formattedDate);
             }
         });
     });
-    </script>
+</script>
 @endsection

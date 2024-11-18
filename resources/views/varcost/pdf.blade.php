@@ -24,6 +24,20 @@
         th {
             background-color: #f2f2f2;
         }
+        .signature-section {
+            font-size: 6px;
+        }
+        .signature-table {
+            width: 100%;
+            border: none; /* Menghilangkan border pada tabel tanda tangan */
+        }
+        .signature-table td {
+            text-align: left;
+            border: none; /* Menghilangkan border pada sel */
+        }
+        .signature-table .signature-cell {
+            width: 25%; /* Lebar tiap kolom tanda tangan */
+        }
     </style>
 </head>
 <body>
@@ -81,5 +95,39 @@
             @endforeach
         </tbody>
     </table>
+   <!-- Tanda Tangan -->
+   <div class="signature-section">
+    <p>Makassar, ................</p>
+    <p>Dibuat Oleh,</p>
+    <table class="signature-table">
+        <tr>
+            <td class="signature-cell">
+                <p>PT. Triple eGlobal Transformasi</p>
+                <br><br><br><br>
+                <p>Fany Fitria</p>
+                <p>Lead O&M Sulawesi</p>
+            </td>
+            <td class="signature-cell">
+                <p>PT. Triple eGlobal Transformasi</p>
+                <br><br><br><br>
+                <p>Fahrul Qistan</p>
+                <p>ROH Ternate</p>
+            </td>
+            <td class="signature-cell">
+                <p>PT. Triple eGlobal Transformasi</p>
+                <br><br><br><br>
+                <p>Mas Eko Prihantono</p>
+                <p>Regional Lead Sulawesi</p>
+            </td>
+            <td class="signature-cell">
+                <p>PT. Telkomsel</p>
+                <br><br><br><br>
+                <p>Fredi Tandibura</p>
+                <p>Manager NOP Ternate</p>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
+

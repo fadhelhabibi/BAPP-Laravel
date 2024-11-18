@@ -5,31 +5,18 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    <!-- Topbar Search -->
-    {{-- <form
-        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-
-        </div>
-    </form> --}}
-    {{-- <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                &nbsp;
-                <span class="navbar-text" id="greeting"></span>
-                (<small class="navbar-text" id="dateTime"></small>)
-            </li>
-        </ul>
-    </div> --}}
-
     <button class="border-0 bg-white d-none d-md-block" id="sidebarToggle">
        &nbsp; <i class="fas fa-bars"></i>
     </button>  
+    <div class="ml-3 text-dark" style="font-size: 12px;">
+        <p class="mb-0 mt-3"><b>Berita Acara Penyelesaian Pekerjaan (BAPP)</b></p>
+        <p>Application for Triple-E</p>
+    </div>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
-        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        {{-- <!-- Nav Item - Search Dropdown (Visible Only XS) -->
         <li class="nav-item dropdown no-arrow d-sm-none">
             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +38,7 @@
                     </div>
                 </form>
             </div>
-        </li>
+        </li> --}}
 
         {{-- <!-- Nav Item - Alerts -->
         <li class="nav-item dropdown no-arrow mx-1">
@@ -169,6 +156,11 @@
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
             </div>
         </li> --}}
+
+        <div class="ml-3 text-dark" style="font-size: 12px;">
+            <p class="mb-0 mt-3"><b>Versi Aplikasi</b></p>
+            <p>V1.1 Release</p>
+        </div>
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
