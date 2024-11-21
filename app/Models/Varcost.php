@@ -11,5 +11,5 @@ class Varcost extends Model
 
     protected $table = 'varcost';
 
-    protected $fillable = ['kategori','periode','tahun','siteid','sitename','nop','cluster','tiketfiola','tanggalpelaksanaan','aktivity','kodesl','qty','hargasatuan','fee','statusticket','po','statuspekerjaan','statuspenagihan'];
+    protected $fillable = ['kategori','periode','tahun','siteid','sitename','nop','cluster','tiketfiola','tanggalpelaksanaan','aktivity','kodesl','qty','hargasatuan','fee','statusticket','po','statuspekerjaan','statuspenagihan','filepdf'];
 }

@@ -38,72 +38,56 @@ class VarcostController extends Controller
 
     }
 
-    public function simpan(Request $request){
-
+    public function simpan(Request $request)
+    {
         $request->validate([
-            // Validasi lainnya
-            'tanggalpelaksanaan' => 'required|date',
-        ]);    
-
-        $data = [
-            'kategori'=>$request->kategori,
-            'periode'=>$request->periode,
-            'tahun'=>$request->tahun,
-            'siteid'=>$request->siteid,
-            'sitename'=>$request->sitename,
-            'nop'=>$request->nop,
-            'cluster'=>$request->cluster,
-            'tiketfiola'=>$request->tiketfiola,
-            'tanggalpelaksanaan'=>$request->tanggalpelaksanaan,
-            'aktivity'=>$request->aktivity,
-            'kodesl'=>$request->kodesl,
-            'qty'=>$request->qty,
-            'hargasatuan'=>$request->hargasatuan,
-            'fee'=>$request->fee,
-            'statusticket'=>$request->statusticket,
-            'po'=>$request->po,
-            'statuspekerjaan'=>$request->statuspekerjaan,
-            'statuspenagihan'=>$request->statuspenagihan,
-        ];
-
+            'filepdf' => 'nullable|file|mimes:pdf|max:2048',
+        ]);
+    
+        $data = $request->all();
+    
+        if ($request->hasFile('filepdf')) {
+            $file = $request->file('filepdf');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $filename);
+            $data['filepdf'] = $filename;
+        }
+    
         Varcost::create($data);
-
-        return redirect()->route('varcost');
+    
+        return redirect()->route('varcost')->with('success', 'Data berhasil ditambahkan!');
+    }
+    
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'filepdf' => 'nullable|file|mimes:pdf|max:2048',
+        ]);
+    
+        $varcost = Varcost::findOrFail($id);
+        $data = $request->all();
+    
+        if ($request->hasFile('filepdf')) {
+            // Hapus file lama jika ada
+            if ($varcost->filepdf && file_exists(public_path('uploads/' . $varcost->filepdf))) {
+                unlink(public_path('uploads/' . $varcost->filepdf));
+            }
+    
+            $file = $request->file('filepdf');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $filename);
+            $data['filepdf'] = $filename;
+        }
+    
+        $varcost->update($data);
+    
+        return redirect()->route('varcost')->with('success', 'Data berhasil diperbarui!');
     }
 
     public function edit($id){
 
         $varcost = Varcost::find($id);
         return view('varcost.form', ['varcost' => $varcost]);
-
-    }
-
-    public function update($id, Request $request){
-
-        $data = [
-            'kategori'=>$request->kategori,
-            'periode'=>$request->periode,
-            'tahun'=>$request->tahun,
-            'siteid'=>$request->siteid,
-            'sitename'=>$request->sitename,
-            'nop'=>$request->nop,
-            'cluster'=>$request->cluster,
-            'tiketfiola'=>$request->tiketfiola,
-            'tanggalpelaksanaan'=>$request->tanggalpelaksanaan,
-            'aktivity'=>$request->aktivity,
-            'kodesl'=>$request->kodesl,
-            'qty'=>$request->qty,
-            'hargasatuan'=>$request->hargasatuan,
-            'fee'=>$request->fee,
-            'statusticket'=>$request->statusticket,
-            'po'=>$request->po,
-            'statuspekerjaan'=>$request->statuspekerjaan,
-            'statuspenagihan'=>$request->statuspenagihan,
-        ];
-
-        Varcost::find($id)->update($data);
-
-        return redirect()->route('varcost');
 
     }
 

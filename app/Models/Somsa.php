@@ -11,5 +11,5 @@ class Somsa extends Model
 
     protected $table = 'somsa';
 
-    protected $fillable = ['cluster','siteid','sitename','type','ticketnumber','ac','grounding','penerangan','shelter','kebersihan','sparepart','harga'];
+    protected $fillable = ['cluster','siteid','sitename','type','ticketnumber','ac','grounding','penerangan','shelter','kebersihan','sparepart','harga','filepdf',];
 }

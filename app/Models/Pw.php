@@ -11,5 +11,5 @@ class Pw extends Model
 
     protected $table = 'pw';
 
-    protected $fillable = ['ticketnumber','cluster','siteid','sitename','pic','notlppic','tipepenjagasite','hargapemberdayaan','keterangan'];
+    protected $fillable = ['ticketnumber','cluster','siteid','sitename','pic','notlppic','tipepenjagasite','hargapemberdayaan','keterangan','filepdf'];
 }
