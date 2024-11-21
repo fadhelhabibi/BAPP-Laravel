@@ -18,8 +18,25 @@
                     <div class="col-md-10 mt-3">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <h4 class="text-dark font-weight-bold">Selamat Pagi, {{ auth()->user()->nama }}</h4>
-                                <p class="text-muted" style="font-size: 14px;">Sekarang hari minggu, 17 November 2024</p>
+                                <h4 class="text-dark font-weight-bold">
+                                    @php
+                                        $hour = date('H');
+                                        if ($hour >= 5 && $hour < 12) {
+                                            $greeting = 'Selamat Pagi';
+                                        } elseif ($hour >= 12 && $hour < 18) {
+                                            $greeting = 'Selamat Siang';
+                                        } elseif ($hour >= 18 && $hour < 21) {
+                                            $greeting = 'Selamat Sore';
+                                        } else {
+                                            $greeting = 'Selamat Malam';
+                                        }
+                                    @endphp
+                                    {{ $greeting }}, {{ auth()->user()->nama }}
+                                </h4>
+                                <p class="text-muted" style="font-size: 14px;">
+                                    Sekarang hari {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+                                </p>
+                                
                             </div>
                             <div>
                                 <a href="{{ route('dashboard') }}" class="btn mb-3" style="background-color: #2696d2; color: white; font-size: 14px;"><i class="fas fa-sync"></i> Refresh</a>
@@ -123,7 +140,7 @@
 @endsection
 
 @section('scripts')
-<script>
+{{-- <script>
     // Ambil konteks dari canvas
     var ctx = document.getElementById("myDonutChart").getContext("2d");
 
@@ -167,9 +184,9 @@
         data: data,
         options: options
     });
-</script>  
+</script>   --}}
 
-<script>
+{{-- <script>
     var months = @json($months);
     var userCounts = @json($userCounts);
     var varcostCounts = @json($varcostCounts);
@@ -268,5 +285,5 @@
             }
         }
     });
-</script>
+</script> --}}
 @endsection

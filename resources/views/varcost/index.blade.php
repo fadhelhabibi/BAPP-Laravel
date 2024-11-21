@@ -100,7 +100,14 @@
                                         @endif
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('hapus-form-{{ $row->id }}').submit(); }">Hapus</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Detail</a>
+                                        <a class="dropdown-item" href="#" 
+                                        @if(isset($row->filepdf) && !empty($row->filepdf))
+                                            onclick="window.open('{{ asset('uploads/' . $row->filepdf) }}', '_blank')"
+                                        @else
+                                            disabled
+                                        @endif>
+                                        Lihat Detail
+                                     </a>
                                     </div>
                                 </div>
                                 <form id="hapus-form-{{ $row->id }}" action="{{ route('varcost.hapus', $row->id) }}" method="POST" style="display: none;">

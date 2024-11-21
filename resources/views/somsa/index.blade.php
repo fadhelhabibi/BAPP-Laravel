@@ -30,7 +30,7 @@
                         <th>No</th>
                         <th>Cluster</th>
                         <th>Site ID</th>
-                        <th>Site Name</th>
+                        <th style="min-width: 100px;">Site Name</th>
                         <th>Type</th>
                         <th>Ticket Number</th>
                         <th>AC</th>
@@ -50,7 +50,7 @@
                             <th>{{ $no++ }}</th>
                             <td>{{ $row->cluster }}</td>
                             <td>{{ $row->siteid }}</td>
-                            <td>{{ $row->sitename }}</td>
+                            <td style="min-width: 100px;">{{ $row->sitename }}</td>
                             <td>{{ $row->type }}</td>
                             <td>{{ $row->ticketnumber }}</td>
                             <td>{{ $row->ac }}</td>
@@ -76,7 +76,14 @@
                                         <a class="dropdown-item" href="#" 
                                         onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('hapus-form-{{ $row->id }}').submit(); }">Hapus</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Detail</a>
+                                        <a class="dropdown-item" href="#" 
+                                        @if(isset($row->filepdf) && !empty($row->filepdf))
+                                            onclick="window.open('{{ asset('uploads/' . $row->filepdf) }}', '_blank')"
+                                        @else
+                                            disabled
+                                        @endif>
+                                        Lihat Detail
+                                     </a>
                                     </div>
                                 </div>
 

@@ -3,7 +3,7 @@
 @section('title','Form Varcost')
 
 @section('content')
-<form action="{{ isset($varcost) ? route('varcost.tambah.update', $varcost->id) : route('varcost.tambah.simpan') }}" method="post">
+<form action="{{ isset($varcost) ? route('varcost.tambah.update', $varcost->id) : route('varcost.tambah.simpan') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">
@@ -190,6 +190,10 @@
                                 <option value="Progress Reconcile" {{ isset($varcost) && $varcost->statuspenagihan == 'Progress Reconcile' ? 'selected' : '' }}>Progress Reconcile</option>
                             </select>                            
                         </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="filepdf">Upload PDF</label>
+                            <input type="file" name="filepdf" id="filepdf" class="form-control">
                         </div>
                     </div>                 
                 </div>

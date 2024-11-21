@@ -3,7 +3,7 @@
 @section('title','Form Somsa')
 
 @section('content')
-<form action="{{ isset($somsa) ? route('somsa.tambah.update', $somsa->id) : route('somsa.tambah.simpan') }}" method="post">
+<form action="{{ isset($somsa) ? route('somsa.tambah.update', $somsa->id) : route('somsa.tambah.simpan') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">
@@ -126,6 +126,10 @@
                                 <label for="harga">Harga</label><!-- Rp. -->
                                 <input required type="number" class="form-control" id="harga" name="harga" value="{{ isset($somsa) ? $somsa->harga : '' }}" placeholder="Masukkan Harga">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="filepdf">Upload PDF</label>
+                            <input type="file" name="filepdf" id="filepdf" class="form-control">
                         </div>
                     </div>                 
                 </div>

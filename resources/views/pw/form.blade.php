@@ -3,7 +3,7 @@
 @section('title','Form PW')
 
 @section('content')
-<form action="{{ isset($pw) ? route('pw.tambah.update', $pw->id) : route('pw.tambah.simpan') }}" method="post">
+<form action="{{ isset($pw) ? route('pw.tambah.update', $pw->id) : route('pw.tambah.simpan') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">
@@ -89,6 +89,10 @@
                             <label for="keterangan">Keterangan</label>
                             <input required type="text" class="form-control" id="keterangan" name="keterangan" value="{{ isset($pw) ? $pw->keterangan : '' }}" placeholder="Masukkan Keterangan">
                         </div> 
+                        <div class="form-group">
+                            <label for="filepdf">Upload PDF</label>
+                            <input type="file" name="filepdf" id="filepdf" class="form-control">
+                        </div>
                     </div>                 
                 </div>
                 <div class="card-footer">

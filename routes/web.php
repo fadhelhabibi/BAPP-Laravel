@@ -5,7 +5,7 @@ use App\Http\Controllers\VarcostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SomsaController;
-use App\Http\Controllers\SonController;
+use App\Http\Controllers\PwController;
 use App\Models\Varcost;
 use Illuminate\Support\Facades\Route;
 
@@ -61,9 +61,23 @@ Route::middleware('auth')->group(function(){
 
     Route::controller(SomsaController::class)->prefix('somsa')->group( function () {
         Route::get('','index')->name('somsa');
+        Route::get('tambah','tambah')->name('somsa.tambah');
+        Route::post('tambah','simpan')->name('somsa.tambah.simpan');
+        Route::get('edit/{id}','edit')->name('somsa.edit');
+        Route::post('edit/{id}','update')->name('somsa.tambah.update');
+        Route::delete('/somsa/hapus/{id}', [SomsaController::class, 'hapus'])->name('somsa.hapus');
+        Route::get('/somsa/export/excel', [SomsaController::class, 'exportExcel'])->name('somsa.export.excel');
+        Route::get('/somsa/export/pdf', [SomsaController::class, 'exportPDF'])->name('somsa.export.pdf');
     });
 
-    Route::controller(SonController::class)->prefix('son')->group( function () {
-        Route::get('','index')->name('son');
+    Route::controller(PwController::class)->prefix('pw')->group( function () {
+        Route::get('','index')->name('pw');
+        Route::get('tambah','tambah')->name('pw.tambah');
+        Route::post('tambah','simpan')->name('pw.tambah.simpan');
+        Route::get('edit/{id}','edit')->name('pw.edit');
+        Route::post('edit/{id}','update')->name('pw.tambah.update');
+        Route::delete('/pw/hapus/{id}', [PwController::class, 'hapus'])->name('pw.hapus');
+        Route::get('/pw/export/excel', [PwController::class, 'exportExcel'])->name('pw.export.excel');
+        Route::get('/pw/export/pdf', [PwController::class, 'exportPDF'])->name('pw.export.pdf');
     });
 });
