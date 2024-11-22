@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SomsaController;
 use App\Http\Controllers\PwController;
+use App\Http\Controllers\ExpenseController;
 use App\Models\Varcost;
 use Illuminate\Support\Facades\Route;
 
@@ -79,5 +80,15 @@ Route::middleware('auth')->group(function(){
         Route::delete('/pw/hapus/{id}', [PwController::class, 'hapus'])->name('pw.hapus');
         Route::get('/pw/export/excel', [PwController::class, 'exportExcel'])->name('pw.export.excel');
         Route::get('/pw/export/pdf', [PwController::class, 'exportPDF'])->name('pw.export.pdf');
+    });
+
+    Route::controller(ExpenseController::class)->prefix('expense')->middleware('auth')->group( function () {
+        Route::get('','index')->name('expense');
+        Route::get('manager','manager')->name('expense.manager');
+        Route::get('tambah','tambah')->name('expense.tambah');
+        Route::post('tambah','simpan')->name('expense.tambah.simpan');
+        Route::get('edit/{id}','edit')->name('expense.edit');
+        Route::post('edit/{id}','update')->name('expense.tambah.update');
+        Route::delete('/expense/hapus/{id}', [ExpenseController::class, 'hapus'])->name('expense.hapus');
     });
 });

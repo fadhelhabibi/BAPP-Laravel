@@ -49,18 +49,26 @@
         Expense
     </div>
     <hr class="sidebar-divider">
-
+    @if (auth()->user()->level == 'Manager')
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('expense.manager') }}">
+            <i class="fas fa-fw fa-dollar-sign"></i>
+            <span>Kelola Expense</span></a>
+    </li>
+    @endif
+    @if (auth()->user()->level == 'Triple-E' || auth()->user()->level == 'KUT' || auth()->user()->level == 'RTS')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('expense') }}">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Expense Me</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('expense.tambah') }}">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Expense Claim</span></a>
     </li>
+    @endif
  
      <!-- Tambahkan tombol toggle di sini -->
      {{-- <hr class="sidebar-divider d-none d-md-block">
